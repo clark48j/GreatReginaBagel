@@ -1,5 +1,4 @@
 /* GET homepage */
-
 const request = require('request');
 
 const apiOptions = {
@@ -9,23 +8,31 @@ if (process.env.NODE_ENV === 'production') {
   apiOptions.server = 'https://greatreginabagel.herokuapp.com';
 }
 
-const index = (req, res, next) => {
+const renderHomepage = (req, res, responseBody) => {
     res.render('index', {
         title: 'Great Regina Bagel - Bagels delivered to you',
         pageHeader: {
           title: 'Great Regina Bagel',
           strapline: 'Find the right bagel for you!'
         },
-        bagels: [{
-            name: 'Regular',
-            description: 'The plainest bagel ever.',
-            rating: 3
-        }, {
-            name: 'Great Canadian Dozen',
-            description: 'The non-plainest bagel ever.',
-            rating: 4
-        }]
-      });
+        bagels: responseBody
+    });
+};
+
+const index = (req, res, next) => {
+    const path = '/api/bagels';
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {},
+        qs: {}
+    };
+    request(
+        requestOptions,
+        (err, response, body) => {
+            renderHomepage(req, res, body);
+        }
+    );
 };
 
 module.exports = {
