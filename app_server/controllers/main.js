@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const renderHomepage = (req, res, responseBody) => {
     res.render('index', {
-        title: 'Great Regina Bagel - Bagels delivered to you',
+        title: 'Great Regina Bagel Test - Bagels delivered to you',
         pageHeader: {
           title: 'Great Regina Bagel',
           strapline: 'Find the right bagel for you!'
