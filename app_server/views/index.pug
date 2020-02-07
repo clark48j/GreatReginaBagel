@@ -1,5 +1,17 @@
 extends layout
 
+block navBar
+        div.container
+            ul.col-md-12.row
+                a(href="#")
+                    li.col-md-3.col-md-offset-1 Register
+                a(href="#")
+                    li.col-md-3 Login
+                a(href="#")
+                    li.col-md-3 Bagels
+                a(href="#")
+                    li.col-md-3 Cart
+
 block content
   .jumbotron
     h1= pageHeader.title
